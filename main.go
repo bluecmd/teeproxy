@@ -46,8 +46,10 @@ func handle(c net.Conn) {
 			return
 		}
 
-		a_chan <- buf[:l]
-		b_chan <- buf[:l]
+		cb := make([]byte, l)
+		copy(cb, buf[:l])
+		a_chan <- cb
+		b_chan <- cb
 	}
 }
 
